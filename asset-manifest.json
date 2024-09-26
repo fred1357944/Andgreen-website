@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Andgreen-website/static/css/main.0a19a2f7.css",
+    "main.js": "/Andgreen-website/static/js/main.16be65da.js",
+    "static/js/453.ec2a74cf.chunk.js": "/Andgreen-website/static/js/453.ec2a74cf.chunk.js",
+    "index.html": "/Andgreen-website/index.html",
+    "main.0a19a2f7.css.map": "/Andgreen-website/static/css/main.0a19a2f7.css.map",
+    "main.16be65da.js.map": "/Andgreen-website/static/js/main.16be65da.js.map",
+    "453.ec2a74cf.chunk.js.map": "/Andgreen-website/static/js/453.ec2a74cf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a19a2f7.css",
+    "static/js/main.16be65da.js"
+  ]
+}
