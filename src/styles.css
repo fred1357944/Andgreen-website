@@ -1,0 +1,88 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic layout */
+body {
+  font-family: "Noto Sans", sans-serif;
+  background-color: white;
+  color: #333; /* Deep grey for text */
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 20px 0;
+  font-weight: 400;
+}
+
+header {
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  text-align: center;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav-list li a:hover {
+  color: #007bff; /* Light blue for hover */
+  border-bottom: 2px solid #007bff;
+}
+
+/* Sections */
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8; /* More space between lines */
+  margin-bottom: 20px;
+}
+
+/* Add a nice hover effect */
+.nav-list li a:hover {
+  color: #0073e6; /* Soft blue for hover */
+  border-bottom: 2px solid #0073e6;
+}
+
+.home-section {
+  background: linear-gradient(
+    135deg,
+    #000000,
+    #555555,
+    #ffffff
+  ); /* 黑到灰再到白的漸層 */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  padding: 100px 20px;
+}
