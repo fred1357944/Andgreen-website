@@ -1,4 +1,8 @@
 /* Reset some default browser styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -85,4 +89,21 @@ p {
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   padding: 100px 20px;
+}
+
+/* Custom Cursor Style */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+}
+
+/* Background fixed for parallax effect */
+.bg-fixed {
+  background-attachment: fixed;
 }
