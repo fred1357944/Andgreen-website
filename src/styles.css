@@ -1,109 +1,341 @@
-/* Reset some default browser styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Basic layout */
-body {
-  font-family: "Noto Sans", sans-serif;
-  background-color: white;
-  color: #333; /* Deep grey for text */
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin: 20px 0;
-  font-weight: 400;
-}
-
-header {
-  background-color: white;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-nav {
-  text-align: center;
-}
-
-.nav-list {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-list li {
-  display: inline-block;
-  margin: 0 15px;
-}
-
-.nav-list li a {
-  text-decoration: none;
+bnpm install locomotive-scroll ody {
+  font-family: "Futura", "UDShinGothic", sans-serif;
+  background-color: #f9f9f9;
   color: #333;
-  font-size: 1.2rem;
-  transition: color 0.3s, border-bottom 0.3s;
+}
+header {
+  display: flex;
+  justify-content: space-between; /* 讓內容左右對齊 */
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+h1,
+h2 {
+  font-family: "Futura BT", "UDShinGothic", sans-serif;
+  font-weight: 600;
+  color: #4d4d4d;
 }
 
-.nav-list li a:hover {
-  color: #007bff; /* Light blue for hover */
-  border-bottom: 2px solid #007bff;
+.bg-gray-100 {
+  background-color: #f5f5f5; /* 更淺的灰色背景 */
+}
+/* 確保錨點跳轉不會被固定的 header 遮擋 */
+[id] {
+  scroll-margin-top: 80px; /* 與 header 的高度相匹配 */
 }
 
-/* Sections */
-section {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-p {
-  font-size: 1.1rem;
-  line-height: 1.8; /* More space between lines */
-  margin-bottom: 20px;
-}
-
-/* Add a nice hover effect */
-.nav-list li a:hover {
-  color: #0073e6; /* Soft blue for hover */
-  border-bottom: 2px solid #0073e6;
-}
-
-.home-section {
+.gradient-bg {
   background: linear-gradient(
-    135deg,
-    #000000,
-    #555555,
-    #ffffff
-  ); /* 黑到灰再到白的漸層 */
+    145deg,
+    #f9f9f9,
+    #e0f7e9
+  ); /* 白色到淺綠的漸層背景 */
+}
+
+.gradient-bg-dark {
+  background: linear-gradient(145deg, #e0f7e9, #d6e9d7); /* 較暗的灰綠漸層 */
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #d6e9d7;
+  color: #333;
+}
+
+.btn-primary:hover {
+  background-color: #c4d9c7;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.slider-image {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .home-section {
+    padding: 5rem;
+  }
+}
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+.bg-parallax {
+  background-image: url("../public/images/hero1.jpg");
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  padding: 100px 20px;
+}
+body {
+  font-family: "Inter", sans-serif; /* 使用 Google Fonts 中的 Inter 字體 */
+  /*background-color: #f9fafb; /* 淺灰色背景 */
+  color: #333; /* 深灰色文字 */
 }
 
-/* Custom Cursor Style */
+a {
+  color: #334;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #06d6a0; /* 在 hover 時改變顏色 */
+  text-decoration: underline; /* 確保 hover 時底線仍然存在 */
+}
+main {
+  padding-top: 80px; /* 確保主內容不會被固定的頭部遮擋 */
+}
 .custom-cursor {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
+  background-color: rgba(6, 214, 160, 0.8);
+  position: fixed;
   pointer-events: none;
   mix-blend-mode: difference;
-  transition: transform 0.2s ease;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.15s ease, background-color 0.3s ease;
 }
 
-/* Background fixed for parallax effect */
-.bg-fixed {
-  background-attachment: fixed;
+.social-icons-contact {
+  display: flex;
+  justify-content: flex-start; /* 讓圖標靠left對齊 */
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem; /* 增加底部間隔，向上移動 */
+}
+
+.social-icons-contact a {
+  margin-left: 1rem; /* 每個圖標之間增加 8rem 的間距 */
+}
+
+.social-icons-contact a:first-child {
+  margin-left: 0; /* 第一個圖標不需要左邊的間距 */
+}
+div {
+  position: relative;
+}
+
+a-scene {
+  z-index: -1; /* 確保背景效果在最底層 */
+}
+body {
+  color: #000 !important; /* 全局應用黑色字體，優先級提升 */
+  background-color: #f9f9f9;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+  color: #000 !important; /* 強制應用黑色字體，確保優先級 */
+}
+
+a:hover {
+  color: #06d6a0 !important; /* 修改 hover 時的顏色 */
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.bento-item {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+.bento-item:hover {
+  transform: translateY(-0.5rem);
+}
+
+.bento-item:nth-child(3n + 1) {
+  grid-row: span 2; /* 控制項目佔用行數 */
+}
+
+.bento-item:nth-child(4n + 2) {
+  grid-column: span 2; /* 控制項目佔用列數 */
+}
+
+@media (max-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: 500px; /* 移動裝置下仍保持 500px 高度 */
+  }
+
+  .bento-item:nth-child(3n + 1),
+  .bento-item:nth-child(4n + 2) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+@font-face {
+  font-family: "Futura BT";
+  src: url("./fonts/futura-bt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "Futura BT", sans-serif; /* 設置 Futura BT 為字體 */
+}
+
+/* Grid container for bento box layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-section .text-left {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .home-section {
+    padding: 2rem;
+  }
+}
+
+/* styles.css */
+
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.slider-container div {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.slider-container img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 800px;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.slider-container div:hover img {
+  transform: scale(1.05);
+}
+
+.grid-item {
+  flex: 1 1 auto; /* 讓每個 item 自動調整寬度 */
+  min-width: 800px; /* 設置最小寬度，避免過小 */
+  max-width: 2000px; /* 設置最大寬度 */
+  min-height: 400px; /* 根據需要設置最小高度 */
+  width: auto;
+  height: auto; /* 高度根據內容自動調整 */
+  margin: 10px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  margin-bottom: 30px; /* gutter size */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for grid items */
+.grid-item:hover {
+  transform: translateY(-10px);
+}
+
+/* 根據內容自適應寬度 */
+.grid-item.auto-width {
+  width: auto;
+  min-width: 800px; /* 設置最小寬度，避免過小 */
+  max-width: 1200px; /* 設置最大寬度，控制元素擴展過大 */
+}
+.container {
+  max-width: 100%;
+  width: 100%; /* 確保容器的寬度不超過螢幕寬度 */
+  padding: 20px;
+}
+
+section {
+  width: 100%; /* 確保 section 的寬度也是 100% */
+  margin: 0 auto; /* 保持水平居中 */
+}
+/* styles.css */
+
+.background-effect {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.social-icons-contact {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* 控制圖標之間的距離 */
+}
+
+/* styles.css */
+
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+
+.contact-section .text-left {
+  max-width: 60%;
+}
+
+.contact-section .social-icons-contact {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-section .text-left {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
 }

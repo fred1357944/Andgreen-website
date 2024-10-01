@@ -3,13 +3,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "light-gray": "#d3d3d3", // For headings
+        "soft-gray": "#f5f5f5",
+        "light-green": "#e0f7e9",
+        "dark-gray": "#4d4d4d",
+        "primary-green": "#d6e9d7",
+        "hover-green": "#c4d9c7",
       },
       fontFamily: {
-        futura: ["Futura BT", "sans-serif"],
-        morisawa: ["UD Shin Gothic", "sans-serif"],
+        futura: ["Futura", "sans-serif"],
+        "shin-gothic": ["UDShinGothic", "sans-serif"],
+        "futura-bt": ["Futura BT", "sans-serif"],
+      },
+      boxShadow: {
+        soft: "0 4px 8px rgba(0, 0, 0, 0.1)",
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"), // 確保這行存在
+  ],
 };
