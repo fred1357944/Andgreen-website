@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.snap-container {
+  scroll-snap-type: y mandatory;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(6, 214, 160, 0.8);
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+h1,
+h2 {
+  font-family: "Futura BT", sans-serif;
+  font-weight: 600;
+}
+
+.bg-green {
+  background-color: transparent;
+}

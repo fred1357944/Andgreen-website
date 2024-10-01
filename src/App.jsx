@@ -1,24 +1,20 @@
-
-import React, {useState, useEffect} from "react";
-
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
-import {Container, Row, Col} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
-import './App.css';
-
 import AOS from "aos";
 import "aos/dist/aos.css";
-import {AnimatePresence, motion} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import News from "./components/News.jsx";
 import Projects from "./components/Projects.jsx";
 import Careers from "./components/Careers.jsx";
 import Awards from "./components/Awards.jsx";
-import "./styles.css"; // Tailwind CSS & Bootstrap should be configured
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import SocialIcons from "./components/SocialIcons"; // 假設你存放在 components 資料夾下
-import BackgroundEffect from "./components/BackgroundEffect"; // 導入背景效果
-//import BentoGrid from "./components/BentoGrid"; // 導入新的 BentoGrid 組件
+import SocialIcons from "./components/SocialIcons";
+import Loading from "./components/Loading";
+import BackgroundEffect from "./components/BackgroundEffect";
+import "./App.css"; // 調整後的 css 放這裡
 
 // Image assets
 const images = [
@@ -34,11 +30,11 @@ const images = [
 
 // Custom Cursor Component
 function CustomCursor() {
-  const [position, setPosition] = useState({x: 0, y: 0});
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      setPosition({x: event.clientX, y: event.clientY});
+      setPosition({ x: event.clientX, y: event.clientY });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -58,7 +54,7 @@ function CustomCursor() {
         width: "20px",
         height: "20px",
         borderRadius: "50%",
-        backgroundColor: "#06d6a0", // 顯眼的顏色
+        backgroundColor: "#06d6a0",
         pointerEvents: "none",
         zIndex: 9999,
         transform: "translate(-50%, -50%)",
@@ -81,44 +77,33 @@ function Home() {
   };
 
   useEffect(() => {
-    AOS.init({duration: 1200});
+    AOS.init({ duration: 1200 });
   }, []);
 
   return (
-    <motion.div
-      initial={{opacity: 0}}
-      animate={{opacity: 1}}
-      exit={{opacity: 0}}
-      transition={{duration: 0.6}}
-      className="home-section"
-    >
-      {/* 添加背景效果 */}
-      <BackgroundEffect />
-      <section
-        style={{
-          backgroundColor: "white",
-          height: "200px",
-          opacity: 0,
-        }}
-      ></section>
-      {/* Hero Section */}
-      <section
-        className="relative bg-cover bg-center h-screen flex items-center justify-center"
-        style={{backgroundColor: "transparent"}}
+    <div className="snap-container">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        className="snap-section home-section"
       >
-        <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-6">
-          <motion.div
-            initial={{y: -20, opacity: 0}}
-            animate={{y: 0, opacity: 1}}
-            transition={{delay: 0.3, duration: 1}}
-            className="text-left text-black"
-          >
-            <h1 className="text-7xl mx-4 font-futura-bt">綠亦有限公司</h1>
-            <p className="text-lg mx-4">創新設計，綠色科技</p>
-          </motion.div>
-
-          {/* Navigation links restored as original text */}
-          <nav className="absolute top-6 right-6">
+        <BackgroundEffect />
+        <section className="relative bg-cover bg-center h-screen flex items-center justify-center">
+          <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-6">
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="text-left text-black"
+            >
+              <h1 className="text-7xl mx-4 font-futura-bt my-5">綠亦</h1>
+              <p className="text-lg mx-4">創新設計，綠色科技</p>
+            </motion.div>
+          </div>
+          {/* Navigation links */}
+          <nav>
             <Link
               to="/"
               className="text-black mx-4 text-lg hover:text-gray-300 transition"
@@ -150,138 +135,140 @@ function Home() {
               競標與獲獎
             </Link>
           </nav>
-        </div>
-      </section>
-      <section
-        style={{
-          backgroundColor: "white",
-          height: "200px",
-          opacity: 0,
-        }}
-      ></section>
-      {/* <container>
-        <p
-          className="text-7xl font-futura text-black  my-4 bg-green inline-block mx-4"
-          data-aos="fade-up"
-        >
-          設計案例
-        </p>
-      </container>
-*/}
-      {/* Slider */}
-      <section className="py-20 bg-green flex justify-center items-center">
-        <Container fluid>
-          <Row className="justify-content-center">
-            <Col md={10} className="justify-content-center align-items-center">
-              <Slider
-                {...carouselSettings}
-                dots={true} // 確保點點顯示
-                infinite={true}
-                autoplay={true}
-                speed={500}
-                slidesToShow={1}
-                slidesToScroll={1}
-                centerMode={true} // 圖片居中模式
-                centerPadding="0" // 去除 padding，讓圖片完全居中%"}}
-              >
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="px-4 flex justify-center items-center"
-                  >
-                    <motion.div
-                      whileHover={{scale: 1.05}}
-                      className="transition-transform duration-500"
-                      style={{height: "100%"}}
-                    >
-                      <img
-                        src={image}
-                        alt={`Slide ${index + 1}`}
-                        className="w-full mx-auto object-cover rounded-lg" // 加入 rounded-lg 圓角類別
-                        style={{
-                          height: "100%",
-                          maxHeight: "800px",
-                          objectFit: "contain",
-                          borderRadius: "1rem", // 添加圓角樣式
-                        }} // 讓圖片覆蓋容器並帶有圓角
-                      />
-                    </motion.div>
-                  </div>
-                ))}
-              </Slider>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      <section
-        style={{
-          backgroundColor: "white",
-          height: "200px",
-          opacity: 0,
-        }}
-      ></section>
-      <section className="py-16 text-left bg-green flex justify-between items-center px-4">
-        <div className="text-left">
-          <h2 className="text-3xl lg:text-4xl font-futura-bt text-black mb-6">
-            聯絡我們
-          </h2>
-          <p className="text-balck mb-4 font-futura-bt">
-            歡迎通過 Email 聯絡我們: mail@andgreen.org
-          </p>
-          <a
-            href="mailto:mail@andgreen.org"
-            className="text-black underline hover:text-gray-300 transition"
-          >
-            發送訊息
-          </a>
-        </div>
+        </section>
+      </motion.div>
 
-        {/* Social Icons 放在右邊 */}
-        <div className="social-icons-contact">
-          <SocialIcons />
-        </div>
-      </section>
-      <section
-        style={{
-          backgroundColor: "white",
-          height: "200px",
-          opacity: 0,
-        }}
-      ></section>
-    </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        className="snap-section"
+      >
+        <section className="py-20 bg-green flex justify-center items-center">
+          <Container fluid>
+            <Row className="justify-content-center">
+              <Col
+                md={10}
+                className="justify-content-center align-items-center"
+              >
+                <Slider
+                  {...carouselSettings}
+                  dots={true}
+                  infinite={true}
+                  autoplay={true}
+                  speed={500}
+                  slidesToShow={1}
+                  slidesToScroll={1}
+                  centerMode={true}
+                  centerPadding="0"
+                >
+                  {images.map((image, index) => (
+                    <div
+                      key={index}
+                      className="px-4 flex justify-center items-center"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        className="transition-transform duration-500"
+                        style={{ height: "100%" }}
+                      >
+                        <img
+                          src={image}
+                          alt={`Slide ${index + 1}`}
+                          className="w-full mx-auto object-cover rounded-lg"
+                          style={{
+                            height: "100%",
+                            maxHeight: "800px",
+                            objectFit: "contain",
+                            borderRadius: "1rem",
+                          }}
+                        />
+                      </motion.div>
+                    </div>
+                  ))}
+                </Slider>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.6 }}
+        className="snap-section"
+      >
+        <section className="py-16 text-left bg-green flex justify-between items-center px-4">
+          <div className="text-left">
+            <h2 className="text-3xl lg:text-4xl font-futura-bt text-black mb-6">
+              聯絡我們
+            </h2>
+            <p className="text-black mb-4 font-futura-bt">
+              歡迎通過 Email 聯絡我們: mail@andgreen.org
+            </p>
+            <a
+              href="mailto:mail@andgreen.org"
+              className="text-black underline hover:text-gray-300 transition"
+            >
+              發送訊息
+            </a>
+          </div>
+          <div className="social-icons-contact">
+            <SocialIcons />
+          </div>
+        </section>
+      </motion.div>
+    </div>
   );
 }
 
-//
 // Main App Component
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
-      {/* 添加 CustomCursor */}
-      <CustomCursor />
-      <Router>
-        <header>
-          <div>
-            <h1 className="text-black font-futura-bt text-3xl">
-              Andgreen Co. Ltd.
-            </h1>
-          </div>
-        </header>
-        <main className="pt-20 p-8">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/awards" element={<Awards />} />
-            </Routes>
-          </AnimatePresence>
-
-          <footer className="bg-gray-100 py-6"></footer>
-        </main>
-      </Router>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <CustomCursor />
+          <Router>
+            <header>
+              <div>
+                <h1 className="text-black font-futura-bt text-3xl">
+                  Andgreen Co. Ltd.
+                </h1>
+              </div>
+            </header>
+            <main className="pt-20 p-8">
+              <AnimatePresence mode="wait">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/news" element={<News />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/awards" element={<Awards />} />
+                </Routes>
+              </AnimatePresence>
+              <footer className="bg-gray-100 py-6"></footer>
+            </main>
+          </Router>
+        </>
+      )}
     </>
   );
 }
+
 export default App;
