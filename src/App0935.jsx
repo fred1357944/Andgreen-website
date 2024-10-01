@@ -1,11 +1,8 @@
-
 import React, {useState, useEffect} from "react";
 
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import {Container, Row, Col} from "react-bootstrap";
 import Slider from "react-slick";
-import './App.css';
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 import {AnimatePresence, motion} from "framer-motion";
