@@ -51,10 +51,17 @@ body {
 
 .snap-section {
   scroll-snap-align: start;
-  height: 100vh;
+  height: 100vh; /* 滿屏高度 */
+  display: flex; /* 使用 flex 來做垂直和水平居中 */
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.slider-section {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .custom-cursor {

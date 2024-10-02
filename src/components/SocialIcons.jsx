@@ -1,5 +1,5 @@
 import React from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
   faYoutube,
@@ -14,7 +14,9 @@ import {
 
 function SocialIcons() {
   return (
-    <div className="flex items-center space-x-6"> {/* 確保每個 icon 之間有間距 */}
+    <div className="flex items-center space-x-6">
+      {" "}
+      {/* 確保每個 icon 之間有間距 */}
       <a href="#" aria-label="Instagram">
         <FontAwesomeIcon icon={faInstagram} className="text-black text-2xl" />
       </a>

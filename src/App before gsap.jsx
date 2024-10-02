@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {Container, Row, Col} from "react-bootstrap";
 import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { AnimatePresence, motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import News from "./components/News.jsx";
 import Projects from "./components/Projects.jsx";
 import Careers from "./components/Careers.jsx";
@@ -30,11 +30,11 @@ const images = [
 
 // Custom Cursor Component
 function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({x: 0, y: 0});
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      setPosition({ x: event.clientX, y: event.clientY });
+      setPosition({x: event.clientX, y: event.clientY});
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -77,63 +77,63 @@ function Home() {
   };
 
   useEffect(() => {
-    AOS.init({ duration: 1200 });
+    AOS.init({duration: 1200});
   }, []);
 
   return (
     <div className="snap-container">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        exit={{opacity: 0}}
+        transition={{duration: 0.6}}
         className="snap-section home-section"
       >
         <BackgroundEffect />
-        <section className="relative bg-cover bg-center flex items-center justify-center">
-          <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-1">
+        <section className="relative bg-cover bg-center h-screen flex items-center justify-center">
+          <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-6">
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              style={{ marginBottom: "10px" }} // 增加margin-bottom
+              initial={{y: -20, opacity: 0}}
+              animate={{y: 0, opacity: 1}}
+              transition={{delay: 0.3, duration: 1}}
+              style={{marginBottom: "40px"}} // 增加margin-bottom
               className="text-left text-black"
             >
-              <h1 className="text-7xl mx-2 font-futura-bt my-5"> 綠亦</h1>
-              <p className="text-lg mx-2"> 創新設計・綠色科技</p>
+              <h1 className="text-7xl mx-4 font-futura-bt my-5"> 綠亦</h1>
+              <p className="text-lg mx-4 mt-32"> | 創新設計，綠色科技 |</p>
             </motion.div>
           </div>
           {/* Navigation links */}
           <nav>
             <Link
               to="/"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;首頁 &nbsp;&nbsp;
+              &nbsp;首頁
             </Link>
             <Link
               to="/news"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;最新動態 &nbsp;&nbsp;
+              最新動態
             </Link>
             <Link
               to="/projects"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp; 設計及項目 &nbsp;&nbsp;
+              設計及項目
             </Link>
             <Link
               to="/careers"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp; 招聘訊息 &nbsp;&nbsp;
+              招聘訊息
             </Link>
             <Link
               to="/awards"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;競標與獲獎 &nbsp;&nbsp;
+              競標與獲獎
             </Link>
           </nav>
         </section>
@@ -141,15 +141,15 @@ function Home() {
 
       {/* Slider Section 包裹在一個獨立的 snap-section 中 */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        exit={{opacity: 0}}
+        transition={{duration: 0.6}}
         className="snap-section"
       >
         <section
           className="py-20 flex justify-center items-center"
-          style={{ minHeight: "80vh" }}
+          style={{minHeight: "80vh"}}
         >
           <Container fluid>
             <Row className="justify-content-center ">
@@ -171,9 +171,9 @@ function Home() {
                       className="px-4 flex justify-center items-center"
                     >
                       <motion.div
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{scale: 1.05}}
                         className="transition-transform duration-500"
-                        style={{ height: "100%" }}
+                        style={{height: "100%"}}
                       >
                         <img
                           src={image}
@@ -198,10 +198,10 @@ function Home() {
 
       {/* Contact Section */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        exit={{opacity: 0}}
+        transition={{duration: 0.6}}
         className="snap-section"
       >
         <section className="py-16 text-left bg-green flex flex-col lg:flex-row justify-start items-center px-4">
@@ -210,7 +210,7 @@ function Home() {
               聯絡我們
             </h2>
             <p className="text-black mb-4 font-futura-bt">
-              歡迎通過 Email 聯絡我們 : mail@andgreen.org
+              歡迎通過 Email 聯絡我們: mail@andgreen.org
             </p>
             <a
               href="mailto:mail@andgreen.org"
@@ -250,7 +250,7 @@ function App() {
           <Router>
             <header>
               <div>
-                <h1 className="text-black font-futura-bt text-2xl bg-transparent ">
+                <h1 className="text-black font-futura-bt text-3xl">
                   Andgreen Co. Ltd.
                 </h1>
               </div>

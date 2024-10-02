@@ -5,29 +5,39 @@ body {
 }
 header {
   display: flex;
-  justify-content: space-between; /* 讓內容左右對齊 */
+  justify-content: flex-end;
+  background-color: transparent !important;
   align-items: center;
   padding: 20px;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 50;
+  z-index: 10;
 }
 .parent-container {
-  position: relative; /* 父容器設置為 relative */
-  height: 100vh; /* 設置高度，以便背景效果生效 */
+  position: relative;
+  display: flex;
+  /* justify-content: center;  水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 100vh; /* 讓容器佔滿視窗高度 */
+  z-index: 10;
 }
 
 .background-effect {
-  position: absolute; /* 絕對定位 */
-  top: 20px; /* 調整絕對定位的 top */
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  z-index: 2;
 }
 
 h1 {
   font-size: 3rem;
+  position: relative;
+  margin-bottom: 64px;
+  background-color: transparent;
+  z-index: 30;
 }
 
 p {
@@ -145,6 +155,7 @@ section {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-left: 4;
 }
 
 @media (max-width: 768px) {
@@ -163,18 +174,17 @@ nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-radius: 15px; /* 設置圓角，數值越大，圓角越圓 */
-  padding: 5px; /* 確保內邊距讓內容不緊貼邊緣 */
-  width: 100%; /* 你可以調整寬度 */
-  margin: 10px auto; /* 將 nav 居中並增加上下外邊距 */
+  border-radius: 15px;
+  padding: 5px;
+  width: auto; /* 自動適應內容寬度 */
+  margin: 10px auto; /* 將 nav 居中 */
 }
-
 nav a {
-  color: #333;
   margin-left: 1rem;
   text-decoration: none;
   font-size: 1.125rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+  flex-grow: 1; /* 讓每個鏈接在導航欄中平均分配空間 */
+  text-align: center; /* 對齊文本 */
 }
 
 nav a:hover {
@@ -373,10 +383,10 @@ main {
 
 .social-icons-contact {
   display: flex;
-  justify-content: flex-start; /* 讓圖標靠left對齊 */
-  margin-right: 0.5rem;
+  justify-content: flex-start; /* 讓圖標靠左對齊 */
+  align-items: center; /* 確保圖標和上方文字在垂直方向對齊 */
+  gap: 0.75rem; /* 增加圖標之間的間距 */
   margin-top: 0.5rem;
-  margin-bottom: 2rem; /* 增加底部間隔，向上移動 */
 }
 
 .social-icons-contact a {
@@ -384,8 +394,32 @@ main {
 }
 
 .social-icons-contact a:first-child {
-  margin-left: 0; /* 第一個圖標不需要左邊的間距 */
+  margin-left: 1.5rem; /* 第一個圖標不需要左邊的間距 */
 }
+
+.contact-section .social-icons-contact {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-section .text-left {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  .social-icons-contact {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 1.5rem; /* 調整這裡的值來讓圖標靠右一點 */
+  }
+}
+
 div {
   position: relative;
 }
@@ -650,6 +684,7 @@ nav a:hover {
     overflow-x: auto; /* 水平滾動 */
     white-space: nowrap; /* 防止換行 */
     scrollbar-width: none; /* 隱藏滾動條 */
+    margin-left: 1;
   }
 
   nav::-webkit-scrollbar {
@@ -713,11 +748,18 @@ nav a:hover {
     padding: 10px 15px;
     font-size: 1rem; /* 調整手機上的文字大小 */
   }
-
+  .text-left {
+    padding-left: 1.5rem; /* 同樣調整文字左邊距 */
+  }
   .nav-links a:first-child {
     margin-left: 0; /* 移除左侧的默认间距 */
     margin-right: auto; /* 自动分配右侧空间，确保其他链接居中 */
     padding-left: 0; /* 调整左边距，使首页更靠左 */
   }
 }
-/* 確保 body 具有滾動行為 */
+/* 禁用手機版的 scroll-snap */
+@media (max-width: 768px) {
+  .snap-container {
+    scroll-snap-type: none; /* 手機版禁用 scroll-snap */
+  }
+}

@@ -90,50 +90,49 @@ function Home() {
         className="snap-section home-section"
       >
         <BackgroundEffect />
-        <section className="relative bg-cover bg-center flex items-center justify-center">
-          <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-1">
+        <section className="relative bg-cover bg-center h-screen flex items-center justify-center">
+          <div className="absolute inset-0 bg-green bg-opacity-50 flex items-center justify-between p-6">
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 1 }}
-              style={{ marginBottom: "10px" }} // 增加margin-bottom
               className="text-left text-black"
             >
-              <h1 className="text-7xl mx-2 font-futura-bt my-5"> 綠亦</h1>
-              <p className="text-lg mx-2"> 創新設計・綠色科技</p>
+              <h1 className="text-7xl mx-4 font-futura-bt my-5">綠亦</h1>
+              <p className="text-lg mx-4">創新設計，綠色科技</p>
             </motion.div>
           </div>
           {/* Navigation links */}
           <nav>
             <Link
               to="/"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;首頁 &nbsp;&nbsp;
+              首頁
             </Link>
             <Link
               to="/news"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;最新動態 &nbsp;&nbsp;
+              最新動態
             </Link>
             <Link
               to="/projects"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp; 設計及項目 &nbsp;&nbsp;
+              設計及項目
             </Link>
             <Link
               to="/careers"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp; 招聘訊息 &nbsp;&nbsp;
+              招聘訊息
             </Link>
             <Link
               to="/awards"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
+              className="text-black mx-4 text-lg hover:text-gray-300 transition"
             >
-              &nbsp;&nbsp;競標與獲獎 &nbsp;&nbsp;
+              競標與獲獎
             </Link>
           </nav>
         </section>
@@ -204,13 +203,13 @@ function Home() {
         transition={{ duration: 0.6 }}
         className="snap-section"
       >
-        <section className="py-16 text-left bg-green flex flex-col lg:flex-row justify-start items-center px-4">
-          <div className="text-left mx-4">
+        <section className="py-16 text-left bg-green flex justify-between items-center px-4">
+          <div className="text-left">
             <h2 className="text-3xl lg:text-4xl font-futura-bt text-black mb-6">
               聯絡我們
             </h2>
             <p className="text-black mb-4 font-futura-bt">
-              歡迎通過 Email 聯絡我們 : mail@andgreen.org
+              歡迎通過 Email 聯絡我們: mail@andgreen.org
             </p>
             <a
               href="mailto:mail@andgreen.org"
@@ -250,7 +249,7 @@ function App() {
           <Router>
             <header>
               <div>
-                <h1 className="text-black font-futura-bt text-2xl bg-transparent ">
+                <h1 className="text-black font-futura-bt text-3xl">
                   Andgreen Co. Ltd.
                 </h1>
               </div>
