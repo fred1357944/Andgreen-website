@@ -1,47 +1,82 @@
 import React, { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const BentoGrid = ({ images }) => {
-  const [currentImage, setCurrentImage] = useState(null); // 用於顯示右側預覽的當前圖片
+const BentoGrid = ({ images, isLoading }) => {
+  const [currentImage, setCurrentImage] = useState(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
 
   const selectImage = (image) => {
-    setCurrentImage(image); // 點擊圖片後更新右側預覽區域
+    setCurrentImage(image);
+  };
+
+  const handleMouseMove = (e, index) => {
+    const item = e.currentTarget;
+    const { width, height, left, top } = item.getBoundingClientRect();
+    const mouseX = e.clientX - (left + width / 2); // 相對於圖片中心的X座標
+    const mouseY = e.clientY - (top + height / 2); // 相對於圖片中心的Y座標
+
+    const rotateY = (mouseX / (width / 2)) * 15; // 根據滑鼠位置設置旋轉角度Y
+    const rotateX = -(mouseY / (height / 2)) * 15; // 根據滑鼠位置設置旋轉角度X
+
+    setRotation({ x: rotateX, y: rotateY });
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col lg:flex-row">
       {/* 左側BentoGrid Layout */}
-      <section className="py-20 w-1/2">
+      <section className="py-20 w-full lg:w-1/2">
         <div className="container mx-auto px-4">
           <div className="bento-grid">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className="bento-item"
-                onClick={() => selectImage(image)}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105 rounded-lg" // 確保圖片有倒圓角
-                  style={{ height: "600px", borderRadius: "1rem" }} // 圖片的圓角設置
-                />
-              </div>
-            ))}
+            {isLoading
+              ? Array(9)
+                  .fill(0)
+                  .map((_, index) => (
+                    <Skeleton
+                      key={index}
+                      height={200}
+                      width={"100%"}
+                      className="rounded-lg"
+                    />
+                  ))
+              : images.map((image, index) => (
+                  <div
+                    key={index}
+                    className="bento-item"
+                    onClick={() => selectImage(image)}
+                    onMouseMove={(e) => handleMouseMove(e, index)}
+                    style={{
+                      transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+                      transition:
+                        "transform 0.1s ease-out, box-shadow 0.3s ease",
+                      boxShadow: "0 20px 30px rgba(0, 0, 0, 0.6)", // 調整陰影
+                    }}
+                  >
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      style={{
+                        height: "100%",
+                        borderRadius: "0.5rem",
+                      }}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
           </div>
         </div>
       </section>
 
       {/* 右側圖片預覽區域 */}
-      <section className="py-20 w-1/2 flex flex-col items-center justify-center">
+      <section className="py-20 w-full lg:w-1/2 flex flex-col items-center justify-center">
         {currentImage ? (
           <div className="text-center">
             <img
               src={currentImage.src}
               alt={currentImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg" // 圖片圓角
-              style={{ maxHeight: "500px", borderRadius: "1rem" }} // 圖片預覽圓角設置
+              className="max-w-full max-h-full object-contain rounded-lg"
+              style={{ maxHeight: "500px", borderRadius: "1rem" }}
             />
-            {/* 下面保留的文字 */}
             <p className="text-center mt-4 text-sm text-gray-800">
               {currentImage.caption}
             </p>
@@ -54,29 +89,39 @@ const BentoGrid = ({ images }) => {
       <style jsx>{`
         .bento-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          grid-auto-rows: 300px; /* 固定每個格子的高度 */
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 200px;
           gap: 1rem;
+          perspective: 1000px; /* 提供3D效果 */
         }
 
         .bento-item {
           position: relative;
           overflow: hidden;
-          border-radius: 0.5rem; /* 確保每個圖片區塊有圓角 */
+          border-radius: 0.5rem;
           cursor: pointer;
+          background: transparent; /* 背景透明 */
         }
 
         .bento-item img {
-          object-fit: cover; /* 確保圖片根據比例縮放，填滿框框，無扭曲 */
+          object-fit: cover;
           width: 100%;
           height: 100%;
-          border-radius: 0.5rem; /* 確保圖片內部也有圓角 */
+          border-radius: 0.5rem;
+          transition: transform 0.2s ease-out;
         }
 
         @media (max-width: 768px) {
           .bento-grid {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            grid-auto-rows: 200px; /* 在較小螢幕上調整 */
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 150px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .bento-grid {
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
           }
         }
       `}</style>

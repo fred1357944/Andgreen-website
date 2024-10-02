@@ -15,6 +15,7 @@ import SocialIcons from "./components/SocialIcons";
 import Loading from "./components/Loading";
 import BackgroundEffect from "./components/BackgroundEffect";
 import "./App.css"; // 調整後的 css 放這裡
+import ScrollEffect from "./components/ScrollEffect"; // 引入 ScrollEffect
 
 // Image assets
 const images = [
@@ -105,12 +106,6 @@ function Home() {
           </div>
           {/* Navigation links */}
           <nav>
-            <Link
-              to="/"
-              className="text-black mx-2 text-lg hover:text-gray-300 transition"
-            >
-              &nbsp;&nbsp;首頁 &nbsp;&nbsp;
-            </Link>
             <Link
               to="/news"
               className="text-black mx-2 text-lg hover:text-gray-300 transition"
@@ -248,25 +243,28 @@ function App() {
         <>
           <CustomCursor />
           <Router>
-            <header>
-              <div>
-                <h1 className="text-black font-futura-bt text-2xl bg-transparent ">
-                  Andgreen Co. Ltd.
-                </h1>
-              </div>
-            </header>
-            <main className="pt-20 p-8">
-              <AnimatePresence mode="wait">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/news" element={<News />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/careers" element={<Careers />} />
-                  <Route path="/awards" element={<Awards />} />
-                </Routes>
-              </AnimatePresence>
-              <footer className="bg-gray-100 py-6"></footer>
-            </main>
+            <div className="scroll-container">
+              <header>
+                <div>
+                  <h1 className="text-black font-futura-bt text-2xl bg-transparent ">
+                    Andgreen Co. Ltd.
+                  </h1>
+                </div>
+              </header>
+              <main className="pt-20 p-8">
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/careers" element={<Careers />} />
+                    <Route path="/awards" element={<Awards />} />
+                  </Routes>
+                </AnimatePresence>
+                <footer className="bg-gray-100 py-6"></footer>
+              </main>
+            </div>
+            {/* 這裡應確保 div 標籤正確閉合 */}
           </Router>
         </>
       )}
